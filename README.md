@@ -5,5 +5,5 @@ This project aims at comparing several geospatial data dimensionality reduction 
 ## Project Members
 * [Abdalrahman Mohamed](https://github.com/aboood40091).  
 * [Ghaith Jamjoum](https://github.com/GhaithJamjoum).  
-* [Mohannad AlJanahi](https://github.com/MohannadJanahi).  
+* [Mohannad Janahi](https://github.com/MohannadJanahi).  
 * [Dr. Isam Mashhour Al Jawarneh](https://github.com/IsamAljawarneh).
