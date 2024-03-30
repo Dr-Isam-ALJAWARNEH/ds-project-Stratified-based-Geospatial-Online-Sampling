@@ -26,3 +26,8 @@ also interesting:
 
 NEW! 31 March 2024
 - Generate a covering geocode (geohash, H3, S2) for all the polygons in the geojson file. What does this mean, you can think of a geocode as a Minimum Bounding Rectangle (MBR), then each administrative division (neighborhood, district, etc) in the city can be covered by few MBRs, those represent the geocodes (H3, S2, geohash) that cover completely the administrartive polygon. After this, to perform the join (apart from the stock version of Geopandas which applies sjoin), you can mimic the design of the filter-and-refinement approach. The filter is simply an equi-join between the geocode cover and the geocodes of the points from the CSV file, the result is a set of candidates, then the filter is an application of the ray-casting algorithm, where you check those that in real geometries are within a neighborhood by using the costly geometrical operation. We can discuss this concept in a meeting!
+
+- For the paper writing and submission
+- consider one of the following two conference
+    - [MCNA - Spain](https://mcna-conference.org/2024/committee.php)
+    - [IDSTA - Croatia](https://idsta-conference.org/2024/calls.php)
