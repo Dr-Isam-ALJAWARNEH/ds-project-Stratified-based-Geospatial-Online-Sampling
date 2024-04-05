@@ -1,5 +1,19 @@
 # instructions
 ## follow the following instructions
+-----------------------
+# `Update: April 4, 2024`
+## `TODO:`
+- create a covering h3 for each polygon in the `geojson` file, the result is an array of H3 values covering each polygon,
+for example , given a polygon `coordinates: [[
+      [-122.47485823276713, 37.85878356045377],
+      [-122.47504834087829, 37.86196795698972],
+      [-122.47845104316997, 37.86010614563313],
+      [-122.47485823276713, 37.85878356045377]
+    ]]`, applying
+```const hexagons = geojson2h3.featureToH3Set(polygon, 10);```
+this will result in an array, `// -> ['8a2830855047fff', '8a2830855077fff', '8a283085505ffff', '8a283085506ffff']`, for each polygon in the geojson the same appllies, an array of covering H3 values.
+- we need to create a compact representation, specifically you need to  `explode` the arrays so that you have two columns, one column is `neighborhood` and the other is the `h3 value`, such that for each neighborhood we have several corresponding h3 values (those are the values appeared previously in the array).
+--------------------
 1. [ ] run the example starting code and familiarize yourself with some geosaptial processing techniques, including:
     - sampling
     - spatial join
