@@ -1,10 +1,11 @@
 # instructions
 ## follow the following instructions
 -----------------------
+<!-- This content will not appear in the rendered Markdown -->
+
 # `Update: April 4, 2024`
 ### `N.B.` references are available in the end of this instruction file!
 ## `TODO:` 
-> [!IMPORTANT]
 - create a covering h3 for each polygon in the `geojson` file, the result is an array of H3 values covering each polygon,
 for example , given a polygon ``` python 
 coordinates: [[
@@ -32,9 +33,13 @@ this will result in an array, `// -> ['8a2830855047fff', '8a2830855077fff', '8a2
 - Having generated the `H3 cover` from the polygon file, you develop a simple algorithm to resemble the filter-and-refinement join using the H3 as the encoding system. 
 - Do the same for Google's S2, generate a cover for each polygon in the geojson file, the result should be a dataframe with a compact format (two columns, `neighborhood ` and `S2 value`), same as described for the H3. 
     - also implement a filter-and-refine spatial join using S2 this time.
+    - check [S2 Region Coverer Online Viewer](https://igorgatis.github.io/ws2/), to see what it means by generating an S2 coverer!, You can also use the following [s2-geojson](https://github.com/pantrif/s2-geojson) as an S2 coverer viewer, and also read more about in the original work by google's [S2 geometry](http://s2geometry.io/) (`SIDE`: you can use those to write some parts of your paper!), also [S2 Covering Examples](http://s2geometry.io/devguide/examples/coverings.html)
+    - probably you can use `s2sphere` framework to generate the coverer given a geohjson file. For example something similar to the following: [get a set of S2 cells covering a rectangle in](https://s2sphere.readthedocs.io/en/latest/quickstart.html)
+    - here is the implementation of the [RegionCoverer class](https://s2sphere.readthedocs.io/en/latest/_modules/s2sphere/sphere.html#RegionCoverer) from s2shpere implementation!
 - Do the same for geohash, generate geohash cover, then perform `filter-refine` spatial join, and compare (time-based and accuracy-based QoS requirements) with S2 and H3.
 - read more about `filter-and-refine` spatial join in the following [presentation](https://isamaljawarneh.github.io/talks/FOSS4G2021.pdf)
     - also, a very good explanation (which you can use and cite when you write your paper) is our recent paper in [^1].
+    - you specifically need to check the part that reads ```filter-and-refine algorithm [39]. It operates in three steps as follows....```
     
     [^1]: Al Jawarneh, I. M., Foschini, L., & Bellavista, P. (2023). Efficient Integration of Heterogeneous Mobility-Pollution Big Data for Joint Analytics at Scale with QoS Guarantees. Future Internet, 15(8), 263. [available online](https://www.mdpi.com/1999-5903/15/8/263)
 --------------------
