@@ -78,6 +78,20 @@ see `appendix-A` for further related instructions!
 
 --------------
 ------------------
+# [ ] Task 4
+- start writing your paper, either for conferences or journal. For journal, use the `applied sciences` template atatched in the `target-venue` folder titled `applsci-template.dot`.
+1.  [ ] Include (cite appropriately) all of the following papers! reference papers include:
+    # Category A : for sampling desing and Approximate Query Processing (AQP)
+    > Spatial-aware approximate big data stream processing [^2] and
+    > Polygon Simplification for the Efficient Approximate Analytics of Georeferenced Big Data [^3]
+    > QoS-aware approximate query processing for smart cities spatial data streams. [^4]
+    > Spatially representative online Big Data sampling for smart cities. [^5]
+    # Category B: for spatial join procesing
+    > SpatialSSJP: QoS-Aware Adaptive Approximate Stream-Static Spatial Join Processor [^6]
+    > Efficient Integration of Heterogeneous Mobility-Pollution Big Data for Joint Analytics at Scale with QoS Guarantees [^7]
+    > Efficiently integrating mobility and environment data for climate change analytics.[^8]
+    > Efficient QoS-aware spatial join processing for scalable NoSQL storage frameworks. [^9]
+
 -----------------
 --------------------------
 # [ ] Task1
