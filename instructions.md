@@ -1,8 +1,8 @@
 # instructions
 ## follow the following instructions
 -----------------------
-<!-- This content will not appear in the rendered Markdown -->
-
+<!-- Task 2 -->
+# Task 2! `#RRGGBB`
 # `Update: April 4, 2024`
 ### `N.B.` references are available in the end of this instruction file!
 ## `TODO:` 
