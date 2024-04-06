@@ -16,14 +16,15 @@ coordinates: [[
 this will result in an array, `// -> ['8a2830855047fff', '8a2830855077fff', '8a283085505ffff', '8a283085506ffff']`, for each polygon in the geojson the same appllies, an array of covering H3 values.
 > you can get insights from here, [geojson2h3](https://github.com/uber/geojson2h3)
 - we need to create a compact representation, specifically you need to  `explode` the arrays so that you have two columns, one column is `neighborhood` and the other is the `h3 value`, such that for each neighborhood we have several corresponding h3 values (those are the values appeared previously in the array).
-| neighborhood    | H3 |
-| -------- | ------- |
-| Bronx  | '8a2830855047fff'    |
-| Bronx | '8a2830855077fff'     |
-| Bronx    | '8a283085505ffff'    |
-| center  | '8a283085506ffff'    |
-| center | '8a283085504ffff'     |
-| center    | '8a283085502ffff'    |
+
+    | neighborhood    | H3 |
+    | -------- | ------- |
+    | Bronx  | '8a2830855047fff'    |
+    | Bronx | '8a2830855077fff'     |
+    | Bronx    | '8a283085505ffff'    |
+    | center  | '8a283085506ffff'    |
+    | center | '8a283085504ffff'     |
+    | center    | '8a283085502ffff'    |
 
 > you can imagine then that one can perform a filter-refine spatial join (between a csv and geojson files) as  follows: 
 - perform the equi-join first on the H3 values, such that you find neighborhood to which each long/lat pair represented by H3 from the csv (mobility, air quality data etc.,) belongs to. Same H3 values can have several neighborhoods because this is an approximate join known as MBR-join (MBR for Minimum Bounding Rectangle), this is a kind of equi-join. This will result in candidates for which you have to apply the exact geometrical operation to check whether a point (long/lat pair represented by H3 value) falls within the neighborhood (i.e., the polygon in the geojson file) or not in real geometries, which is normally achieved using ray-casting algorithm.
