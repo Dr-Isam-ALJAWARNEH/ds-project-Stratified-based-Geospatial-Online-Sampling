@@ -79,6 +79,9 @@ see `appendix-A` for further related instructions!
 --------------
 ------------------
 # [ ] Task 4
+
+# `IMPortant` test with more than one data, add NYC taxi mobility data (for journal paper, you need tests on more than one data):
+[available online](https://github.com/IsamAljawarneh/datasets/tree/master/data), `nyc1.csv`
 - start writing your paper, either for conferences or journal. For journal, use the `applied sciences` template atatched in the `target-venue` folder titled `applsci-template.dot`.
 1.  [ ] Include (cite appropriately) all of the following papers! reference papers include:
     # Category A : for sampling desing and Approximate Query Processing (AQP)
