@@ -2,7 +2,8 @@
 ## follow the following instructions
 -----------------------
 # `Update: April 4, 2024`
-## `TODO:` [!IMPORTANT]
+## `TODO:` 
+> [!IMPORTANT]
 - create a covering h3 for each polygon in the `geojson` file, the result is an array of H3 values covering each polygon,
 for example , given a polygon ``` python 
 coordinates: [[
