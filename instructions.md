@@ -2,6 +2,7 @@
 ## follow the following instructions
 -----------------------
 # `Update: April 4, 2024`
+### `N.B.` references are available in the end of this instruction file!
 ## `TODO:` 
 > [!IMPORTANT]
 - create a covering h3 for each polygon in the `geojson` file, the result is an array of H3 values covering each polygon,
@@ -31,7 +32,11 @@ this will result in an array, `// -> ['8a2830855047fff', '8a2830855077fff', '8a2
 - Having generated the `H3 cover` from the polygon file, you develop a simple algorithm to resemble the filter-and-refinement join using the H3 as the encoding system. 
 - Do the same for Google's S2, generate a cover for each polygon in the geojson file, the result should be a dataframe with a compact format (two columns, `neighborhood ` and `S2 value`), same as described for the H3. 
     - also implement a filter-and-refine spatial join using S2 this time.
-- read more about `filter-and-refine` spatial join in the following [presentation](https://isamaljawarneh.github.io/talks/FOSS4G2021.pdf) 
+- Do the same for geohash, generate geohash cover, then perform `filter-refine` spatial join, and compare (time-based and accuracy-based QoS requirements) with S2 and H3.
+- read more about `filter-and-refine` spatial join in the following [presentation](https://isamaljawarneh.github.io/talks/FOSS4G2021.pdf)
+    - also, a very good explanation (which you can use and cite when you write your paper) is our recent paper in [^1].
+    
+    [^1]: Al Jawarneh, I. M., Foschini, L., & Bellavista, P. (2023). Efficient Integration of Heterogeneous Mobility-Pollution Big Data for Joint Analytics at Scale with QoS Guarantees. Future Internet, 15(8), 263. [available online](https://www.mdpi.com/1999-5903/15/8/263)
 --------------------
 1. [ ] run the example starting code and familiarize yourself with some geosaptial processing techniques, including:
     - sampling
