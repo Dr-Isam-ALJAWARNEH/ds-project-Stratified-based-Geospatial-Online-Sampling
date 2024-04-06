@@ -75,21 +75,7 @@ this will result in an array, `// -> ['8a2830855047fff', '8a2830855077fff', '8a2
         - If you think about the geocodes that you have generated (being that `S2`, `H3` or `geohash`) where each geocode contains within its premises a set of points (i.e., set long/lat pairs). Think of those geocodes as Minimum Bounding Rectangles (MBR), or Minimum Bounding Boxes (MBB). Having said that, we have already built successfully aa pre-filtering stage! That is to say, those geocodes are prefilters. Then theoritically speaking, points belonging to same geocode (i.e., are within the MBR represented by the geocode) belong to the same cluster even without applying DBSCAN! that is a cheap quick-and-approximate filter!. So, referring back to the parameters, `min_samples`, we simply count the number of points in each geocode (being that `S2`, `H3` or `geohash`), if that count is greater than `min_samples`, we consider this geocode as a cluster (term this `geocode cluster` hereafter for clarity) without having to calculate any distances! (cheap filter), then we pass only the points (call those as `outliers` for reference hereafter) that belong to geocodes that are having points less than the threshold `min_samples` to the plain DBSCAN to find the remaining clusters by appling the expensive distance calculations in DBSCAN. However, we should do this with caveat! as some of those points are geographically close in distance to some of the `geocode cluster` clusters that resulted in the filtering step!, what does this mean. This means that before generating new clusters based on some of those `outlier` points, we need to check whether their distances to some `geocode cluster` cores are less than the threshold `epsilon`, if so the case then they belong to one or more `geocode cluster` clusters, otherwise we pass them to the plain version of the DBSCAN. This is just a propsed algorithm and you are expected to develop it further as per your comprehension of the DBSCAN and its implementation in scikit-learn.
     - You then need to compare this algorithm with the stock version of DBSCAN as implemented in the scikit-learn. You need to capture two metrics: running time of each algorithm and the accuracy metric (for example, use `silhouette_score` from scikit-learn) [**bonus** if you could apply [geosilhouettes](https://pysal.org/esda/notebooks/geosilhouettes.html)]
 see `appendix-A` for further related instructions! [^2]
-[^2] one importance configurable parameter in this case is the distance metric.
-  > you can use instead 
-    - most importantly the following : ```From scikit-learn: [‘cityblock’, ‘euclidean’, ‘l1’, ‘l2’, ‘manhattan’].``` [sklearn.metrics.pairwise_distances](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise_distances.html)
-    - and probably aome of the following ```From scipy.spatial.distance: [‘braycurtis’, ‘canberra’, ‘chebyshev’, ‘dice’, ‘hamming’, ‘jaccard’, ‘kulsinski’, ‘rogerstanimoto’, ‘russellrao’,, ‘sokalmichener’, ‘sokalsneath’, ```
 
-  - then, having permutate this configurable parameter, capture the ```silhouette_score``` and compare, then draw an x-y figure such as the following [figure attached in notebook], (```you can do those graphs in MS excel after capturing the numbers```):
-  - Provide a detailed explanation of the values you obtained for ```Silhouette Coefficient```
-    - take some insights from [scikit-learn docs](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html#sklearn.metrics.silhouette_score)
-    - That is to say, >
-    > "The best value is 1 and the worst value is -1. Values near 0 indicate overlapping clusters. Negative values generally indicate that a sample has been assigned to the wrong cluster, as a different cluster is more similar."
-  - you need to do more analytics and Exploratory Spatio-Temporal Data Analytics (ESTDA,  read specifically [Extending DBSCAN beyond just spatial coordinates](https://musa-550-fall-2020.github.io/slides/lecture-11A.html), thereafter, for example ```Identify the 5 largest clusters``` , ```Get mean statistics for the top 5 largest clusters```, ```Visualize the top 5 largest clusters```, ```Visualizing one cluster at a time```.
-- add other metrics from the [sklearn.metrics](https://scikit-learn.org/stable/modules/clustering.html#clustering-performance-evaluation), for example the following:
-  > - ```Davies-Bouldin Index```, **Zero is the lowest possible score. Values closer to zero indicate a better partition.**
-  for your experiment, we have obtained a number on par with 2.78!, which is very high! so probably your clustering scheme misses something! try different combinations of configurations (sampling scheme, distance methods, distance based on combination of features such as geographical long/lat and pm25 values), read my previous comments to get insights.
-    - ```Calinski-Harabasz Index```. You have computed that already, but what is your explanation and reasoning of the results obtained!
 --------------
 ------------------
 -----------------
@@ -125,3 +111,21 @@ NEW! 31 March 2024
 - consider one of the following two conference
     - [MCNA - Spain](https://mcna-conference.org/2024/committee.php)
     - [IDSTA - Croatia](https://idsta-conference.org/2024/calls.php)
+===============================
+-----------------------
+# `Appendices`
+[^2] `appendix-A` one importance configurable parameter in this case is the distance metric.
+  > you can use instead 
+    - most importantly the following : ```From scikit-learn: [‘cityblock’, ‘euclidean’, ‘l1’, ‘l2’, ‘manhattan’].``` [sklearn.metrics.pairwise_distances](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise_distances.html)
+    - and probably aome of the following ```From scipy.spatial.distance: [‘braycurtis’, ‘canberra’, ‘chebyshev’, ‘dice’, ‘hamming’, ‘jaccard’, ‘kulsinski’, ‘rogerstanimoto’, ‘russellrao’,, ‘sokalmichener’, ‘sokalsneath’, ```
+
+  - then, having permutate this configurable parameter, capture the ```silhouette_score``` and compare, then draw an x-y figure such as the following [figure attached in notebook], (```you can do those graphs in MS excel after capturing the numbers```):
+  - Provide a detailed explanation of the values you obtained for ```Silhouette Coefficient```
+    - take some insights from [scikit-learn docs](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html#sklearn.metrics.silhouette_score)
+    - That is to say, >
+    > "The best value is 1 and the worst value is -1. Values near 0 indicate overlapping clusters. Negative values generally indicate that a sample has been assigned to the wrong cluster, as a different cluster is more similar."
+  - you need to do more analytics and Exploratory Spatio-Temporal Data Analytics (ESTDA,  read specifically [Extending DBSCAN beyond just spatial coordinates](https://musa-550-fall-2020.github.io/slides/lecture-11A.html), thereafter, for example ```Identify the 5 largest clusters``` , ```Get mean statistics for the top 5 largest clusters```, ```Visualize the top 5 largest clusters```, ```Visualizing one cluster at a time```.
+- add other metrics from the [sklearn.metrics](https://scikit-learn.org/stable/modules/clustering.html#clustering-performance-evaluation), for example the following:
+  > - ```Davies-Bouldin Index```, **Zero is the lowest possible score. Values closer to zero indicate a better partition.**
+  for your experiment, we have obtained a number on par with 2.78!, which is very high! so probably your clustering scheme misses something! try different combinations of configurations (sampling scheme, distance methods, distance based on combination of features such as geographical long/lat and pm25 values), read my previous comments to get insights.
+    - ```Calinski-Harabasz Index```. You have computed that already, but what is your explanation and reasoning of the results obtained!
